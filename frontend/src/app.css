@@ -1,0 +1,92 @@
+.card {
+  min-width: 240px;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card label {
+  border-bottom: 0.2px solid gray;
+  color: green;
+  font-size: 14px;
+  padding: 5px 0;
+  text-transform: capitalize;
+}
+.card h4 {
+  font-size: 16px;
+  font-weight: normal;
+  text-transform: capitalize;
+  padding-top: 3px;
+}
+.card .desc {
+  font-size: 14px;
+  color: #3a3a3a;
+}
+.card .stars {
+  display: inline;
+  fill: gold;
+  width: 25px;
+  height: 25px;
+  margin: 0 2px;
+}
+.card .username {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+button.mapboxgl-popup-close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: rgb(111, 108, 108);
+  color: white;
+  font-size: 20px;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 50%;
+  transition: background 0.3s ease-in-out;
+}
+button.mapboxgl-popup-close-button:hover {
+  background: black;
+}
+/* form */
+.form_card {
+  width: 300px;
+}
+.form_card h3 {
+  text-align: center;
+  margin-bottom: -20px;
+  font-size: 20px;
+  color: blueviolet;
+}
+.form_card form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 30px;
+}
+.form_card form input,
+textarea,
+select {
+  display: inline-block;
+  border: none;
+  outline: none;
+  border: 1px solid gray;
+  margin-bottom: 10px;
+  text-indent: 5px;
+  padding: 5px;
+}
+.form_card form textarea {
+  min-height: 100px;
+  padding: 5px 0;
+}
+.form_card form button {
+  width: 100%;
+  background-color: tomato;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}

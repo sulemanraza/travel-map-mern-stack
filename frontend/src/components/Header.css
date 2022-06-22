@@ -1,0 +1,48 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background: #ffffff7a;
+  z-index: 999;
+  padding: 0 2.5%;
+}
+header .logo {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+header .logo svg {
+  margin-right: 5px;
+}
+/* Register, Login, logout button */
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+button.button {
+  border: none;
+  outline: none;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.buttons .Login {
+  margin-right: 10px;
+  background: tomato;
+}
+.Logout {
+  background: tomato;
+}
+.buttons .Register {
+  background: slateblue;
+}
