@@ -30,11 +30,13 @@ function App() {
       setCurrentUser(localStorage.getItem("user"));
     }
     const getPin = async () => {
-      const response = await axios.get("http://localhost:8000/api/v1/pins");
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/api/v1/pins`
+      );
       setPinData(response.data);
     };
     getPin();
-  }, []);
+  }, [localStorage]);
 
   const handlePopup = (id) => {
     setcurrentPlaceId(id);

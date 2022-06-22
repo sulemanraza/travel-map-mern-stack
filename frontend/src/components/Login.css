@@ -10,6 +10,15 @@
   z-index: -1;
 }
 .LoginContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+}
+.LoginContainer .wrap {
   z-index: 100;
   width: 350px;
   height: fit-content;

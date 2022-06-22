@@ -16,7 +16,7 @@ export default function Login({ localStorage, setShowLogin, setCurrentUser }) {
     const user = { email, password };
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/login",
+        `${process.env.REACT_APP_BASE_URL}/api/v1/users/login`,
         user
       );
       setSuccess(true);
@@ -30,33 +30,35 @@ export default function Login({ localStorage, setShowLogin, setCurrentUser }) {
   };
   return (
     <div className="LoginContainer">
-      <div className="overly"></div>
-      <h2>
-        <GrMap />
-        Login
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Enter Your Email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Enter Your Password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit LoginBtn">Login</button>
-      </form>
-      <button className="closeBtn" onClick={() => setShowLogin(null)}>
-        X
-      </button>
-      {success && (
-        <div className="success">Successfully. You can Login Now!</div>
-      )}
-      {error && <div className="error">Some want Wrong!</div>}
+      <div className="wrap">
+        <div className="overly"></div>
+        <h2>
+          <GrMap />
+          Login
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Enter Your Email"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Enter Your Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit LoginBtn">Login</button>
+        </form>
+        <button className="closeBtn" onClick={() => setShowLogin(null)}>
+          X
+        </button>
+        {success && (
+          <div className="success">Successfully. You can Login Now!</div>
+        )}
+        {error && <div className="error">Some want Wrong!</div>}
+      </div>
     </div>
   );
 }

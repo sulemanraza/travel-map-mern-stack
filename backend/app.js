@@ -17,5 +17,11 @@ app.use(express.json());
 app.use("/api/v1/users", UserRouter);
 app.use("/api/v1/pins", PinRouter);
 
+app.get("*", (req, res) => {
+  return res
+    .status(200)
+    .send("Welcome Travel Map APP -- Check Your Router EndPoint");
+});
+
 // export app module
 module.exports = app;

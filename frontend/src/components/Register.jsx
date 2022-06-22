@@ -20,7 +20,7 @@ export default function Register({
     const user = { username, email, password };
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/users/register",
+        `${process.env.REACT_APP_BASE_URL}/api/v1/users/register`,
         user
       );
       setSuccess(true);
@@ -34,40 +34,42 @@ export default function Register({
   };
   return (
     <div className="RegisterContainer">
-      <div className="overly"></div>
-      <h2>
-        <GrMap />
-        Register
-      </h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter Your Username"
-          min={3}
-          onChange={(e) => setUserName(e.target.value)}
-          required
-        />
-        <input
-          type="email"
-          placeholder="Enter Your Email"
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Enter Your Password"
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit RegisterBtn">Register</button>
-      </form>
-      <button className="closeBtn" onClick={() => setShowRegister(null)}>
-        X
-      </button>
-      {success && (
-        <div className="success">Successfully. You can Login Now!</div>
-      )}
-      {error && <div className="error">Some want Wrong!</div>}
+      <div className="wrap">
+        <div className="overly"></div>
+        <h2>
+          <GrMap />
+          Register
+        </h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Enter Your Username"
+            min={3}
+            onChange={(e) => setUserName(e.target.value)}
+            required
+          />
+          <input
+            type="email"
+            placeholder="Enter Your Email"
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Enter Your Password"
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button type="submit RegisterBtn">Register</button>
+        </form>
+        <button className="closeBtn" onClick={() => setShowRegister(null)}>
+          X
+        </button>
+        {success && (
+          <div className="success">Successfully. You can Login Now!</div>
+        )}
+        {error && <div className="error">Some want Wrong!</div>}
+      </div>
     </div>
   );
 }
