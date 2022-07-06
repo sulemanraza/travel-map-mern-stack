@@ -12,8 +12,8 @@ function App() {
   const localStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(null);
 
-  const [currentPlaceId, setcurrentPlaceId] = useState(null);
-  const [newPlace, setnewPlace] = useState(null);
+  const [currentPlaceId, setCurrentPlaceId] = useState(null);
+  const [newPlace, setNewPlace] = useState(null);
   const [zoomValue, setZoomValue] = useState(4);
   const [PinData, setPinData] = useState([]);
 
@@ -31,7 +31,7 @@ function App() {
     }
     const getPin = async () => {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/api/v1/pins`
+        `${process.env.REACT_APP_API_URL}/api/v1/pins`
       );
       setPinData(response.data);
     };
@@ -39,7 +39,7 @@ function App() {
   }, [localStorage]);
 
   const handlePopup = (id) => {
-    setcurrentPlaceId(id);
+    setCurrentPlaceId(id);
   };
   const handleZoom = (e) => {
     const { zoom } = e.viewState;
@@ -61,40 +61,41 @@ function App() {
           pitch: 0,
         }}
         {...viewState}
-        onClick={(e) => setnewPlace(e.lngLat)}
+        onClick={(e) => setNewPlace(e.lngLat)}
         onZoom={(e) => handleZoom(e)}
         style={{ width: "100vw", height: "100vh" }}
       >
         <ScaleControl />
         {/* show pin data */}
-        {PinData?.map((pin) => (
-          <div key={pin._id}>
-            {/* Marker */}
-            <PinMarker
-              pin={pin}
-              zoomValue={zoomValue}
-              currentUser={currentUser}
-              handlePopup={handlePopup}
-            />
+        {PinData &&
+          PinData.map((pin) => (
+            <div key={pin._id}>
+              {/* Marker */}
+              <PinMarker
+                pin={pin}
+                zoomValue={zoomValue}
+                currentUser={currentUser}
+                handlePopup={handlePopup}
+              />
 
-            {/* Popup */}
-            {currentPlaceId === pin._id && (
-              <Popup
-                longitude={pin.log}
-                latitude={pin.lat}
-                anchor="left"
-                offset={0}
-                closeButton={true}
-                closeOnClick={false}
-                onClose={() => setcurrentPlaceId(null)}
-              >
-                {/* start Pin Card component */}
-                <PinCard pin={pin} />
-                {/* end Pin Card component */}
-              </Popup>
-            )}
-          </div>
-        ))}
+              {/* Popup */}
+              {currentPlaceId === pin._id && (
+                <Popup
+                  longitude={pin.log}
+                  latitude={pin.lat}
+                  anchor="left"
+                  offset={0}
+                  closeButton={true}
+                  closeOnClick={false}
+                  onClose={() => setCurrentPlaceId(null)}
+                >
+                  {/* start Pin Card component */}
+                  <PinCard pin={pin} />
+                  {/* end Pin Card component */}
+                </Popup>
+              )}
+            </div>
+          ))}
         {/* add new Pin */}
         {newPlace && (
           <Popup
@@ -104,7 +105,7 @@ function App() {
             offset={0}
             closeButton={true}
             closeOnClick={false}
-            onClose={() => setcurrentPlaceId(null)}
+            onClose={() => setCurrentPlaceId(null)}
             className="form_card"
           >
             {/*  Pin Form component start */}
@@ -112,7 +113,7 @@ function App() {
               currentUser={currentUser}
               PinData={PinData}
               setPinData={setPinData}
-              setnewPlace={setnewPlace}
+              setNewPlace={setNewPlace}
               newPlace={newPlace}
             />
             {/*  Pin Form component end */}

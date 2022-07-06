@@ -20,7 +20,7 @@ export default function Register({
     const user = { username, email, password };
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/v1/users/register`,
+        `${process.env.REACT_APP_API_URL}/api/v1/users/register`,
         user
       );
       setSuccess(true);
